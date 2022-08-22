@@ -5,7 +5,28 @@ This is a dot env loading library
 
 ## Getting started
 
-start using the package.
+Depend on it
+Run this command:
+
+With Dart:
+
+``` bash 
+$ dart pub add wuchuheng_env
+```
+This will add a line like this to your package's `pubspec.yaml` (and run an implicit dart pub get):
+``` yaml 
+dependencies:
+wuchuheng_env: ^1.0.0
+```
+
+Alternatively, your editor might support dart pub get. Check the docs for your editor to learn more.
+
+Import it
+Now in your Dart code, you can use:
+
+``` dart 
+import 'package:wuchuheng_env/wuchuheng_env.dart';
+```
 
 ## Usage
 
