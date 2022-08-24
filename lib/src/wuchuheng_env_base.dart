@@ -1,9 +1,9 @@
 import 'dart:io';
 
-class Load {
-  final Map<String, String> env = {};
+class DotEnv {
+  static Map<String, String> env = {};
 
-  Load({required String file}) {
+  DotEnv({required String file}) {
     String content = File(file).readAsStringSync();
     content = content.replaceAll(RegExp(r'^#.*\n+', multiLine: true), '');
     content = content.replaceAll(RegExp(r'#.*(?=\n+)', multiLine: true), '');
@@ -21,5 +21,20 @@ class Load {
       final key = listStr[0].trim();
       env[key] = value;
     }
+  }
+  static T get<T>(String key, T defaultValue) {
+    if (env.containsKey(key)) {
+      final String value = env[key]!;
+      if (defaultValue is bool) {
+        final result = value.toLowerCase() == 'true';
+        return result as T;
+      } else if (defaultValue is int) {
+        return int.parse(value) as T;
+      } else if (defaultValue is String) {
+        return value as T;
+      }
+      throw Error();
+    }
+    return defaultValue;
   }
 }

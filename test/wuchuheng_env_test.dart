@@ -11,11 +11,15 @@ void main() {
 
     test('Env Test', () {
       final file = '${Directory.current.path}/test/.env';
-      final env = Load(file: file).env;
-      expect(env['FOO'], 'foo');
-      expect(env['SIGN_QUOTATION'], 'SIGN_QUOTATION');
-      expect(env['DOUBLE_QUOTE'], 'DOUBLE_QUOTE');
-      expect(env['TRIM_SPACE_FROM_UNQUOTE'], 'TRIM_SPACE_FROM_UNQUOTE');
+      DotEnv(file: file);
+      expect(DotEnv.get('FOO', ''), 'foo');
+      expect(DotEnv.get('SIGN_QUOTATION', ''), 'SIGN_QUOTATION');
+      expect(DotEnv.get('DOUBLE_QUOTE', ''), 'DOUBLE_QUOTE');
+      expect(
+        DotEnv.get('TRIM_SPACE_FROM_UNQUOTE', ''),
+        'TRIM_SPACE_FROM_UNQUOTE',
+      );
+      expect(DotEnv.get('BOOL', false), true);
     });
   });
 }

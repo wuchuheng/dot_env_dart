@@ -16,7 +16,7 @@ $ dart pub add wuchuheng_env
 This will add a line like this to your package's `pubspec.yaml` (and run an implicit dart pub get):
 ``` yaml 
 dependencies:
-wuchuheng_env: ^1.0.0
+wuchuheng_env: ^1.0.2
 ```
 
 Alternatively, your editor might support dart pub get. Check the docs for your editor to learn more.
@@ -35,15 +35,28 @@ to `/example` folder.
 ```dart
 import 'dart:io';
 
+import 'package:test/test.dart';
 import 'package:wuchuheng_env/wuchuheng_env.dart';
 
 void main() {
-  final file = '${Directory.current.path}/test/.env';
-  final env = Load(file: file).env;
-  env['FOO'];
-  env['SIGN_QUOTATION'];
-  env['DOUBLE_QUOTE'];
-  env['TRIM_SPACE_FROM_UNQUOTE'];
+  group('A group of tests', () {
+    setUp(() {
+      // Additional setup goes here.
+    });
+
+    test('Env Test', () {
+      final file = '${Directory.current.path}/test/.env';
+      DotEnv(file: file);
+      expect(DotEnv.get('FOO', ''), 'foo');
+      expect(DotEnv.get('SIGN_QUOTATION', ''), 'SIGN_QUOTATION');
+      expect(DotEnv.get('DOUBLE_QUOTE', ''), 'DOUBLE_QUOTE');
+      expect(
+        DotEnv.get('TRIM_SPACE_FROM_UNQUOTE', ''),
+        'TRIM_SPACE_FROM_UNQUOTE',
+      );
+      expect(DotEnv.get('BOOL', false), true);
+    });
+  });
 }
 ```
 
