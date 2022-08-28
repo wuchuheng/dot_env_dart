@@ -3,8 +3,10 @@ import 'dart:io';
 class DotEnv {
   static Map<String, String> env = {};
 
-  DotEnv({required String file}) {
-    String content = File(file).readAsStringSync();
+  DotEnv({String path = '', String content = ''}) {
+    if (path.isNotEmpty) {
+      content = File(path).readAsStringSync();
+    }
     content = content.replaceAll(RegExp(r'^#.*\n+', multiLine: true), '');
     content = content.replaceAll(RegExp(r'#.*(?=\n+)', multiLine: true), '');
     final matches =

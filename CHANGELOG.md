@@ -9,3 +9,6 @@
 ## 1.0.2
 - refactor: refactoring usage
 
+## 1.0.3
+- feat: Importing env text
+

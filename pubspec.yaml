@@ -1,10 +1,10 @@
 name: wuchuheng_env
 description: This is a dot env loading libray.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/wuchuheng/dot_env_dart
 
 environment:
-  sdk: '>=2.18.0-271.4.beta <3.0.0'
+  sdk: '>=2.17.6 <3.0.0'
 
 # dependencies:
 #   path: ^1.8.0

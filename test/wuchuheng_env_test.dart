@@ -10,8 +10,8 @@ void main() {
     });
 
     test('Env Test', () {
-      final file = '${Directory.current.path}/test/.env';
-      DotEnv(file: file);
+      final String path = '${Directory.current.path}/test/.env';
+      DotEnv(path: path);
       expect(DotEnv.get('FOO', ''), 'foo');
       expect(DotEnv.get('SIGN_QUOTATION', ''), 'SIGN_QUOTATION');
       expect(DotEnv.get('DOUBLE_QUOTE', ''), 'DOUBLE_QUOTE');
